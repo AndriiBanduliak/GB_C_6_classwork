@@ -1,19 +1,35 @@
-﻿/*Задача 40: Напишите программу, которая принимает на вход три
- числа и проверяет, может ли существовать треугольник с сторонами
- такой длины*/
-using static System.Console;
+﻿using static System.Console;
 using System.Linq;
 Clear();
+WriteLine("Enter the number :");
 
-WriteLine("Enter the sides of the triangle");
+int num = int.Parse(ReadLine()!);
+WriteLine(Convert.ToString(num,8));
+WriteLine(GetNum1(num));
+WriteLine(DecToNum(num,8));
 
-int[] array = ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(x=>Convert.ToInt32(x)).ToArray();
 
-WriteLine(Triangle(array)?"Yes":"No");
-
-bool Triangle(int[] arra)
+string GetNum1(int number)
 {
-    return (arra[0]+arra[1] > arra[2] && arra[1]+arra[2] > arra[0] && arra[0]+arra[2] > arra[1]);
-    
+    string result="";
+
+    while(number>0)
+    {
+        result=number%8+result;
+        number/=8;
+    }
+    return result;
 }
 
+string DecToNum(int decNumber, int otherSystem)
+{
+    string res="";
+    string nums="0123456789ABCDEF";
+    while(decNumber>0)
+    {
+        int ost=decNumber/otherSystem;
+        res=nums[decNumber-otherSystem*ost]+res;
+        decNumber/=otherSystem;
+    }
+    return res;
+}
