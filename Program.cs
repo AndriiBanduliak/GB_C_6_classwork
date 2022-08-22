@@ -1,19 +1,22 @@
-﻿/*Задача 40: Напишите программу, которая принимает на вход три
- числа и проверяет, может ли существовать треугольник с сторонами
- такой длины*/
+﻿/*Задача 45: Напишите программу, которая будет
+создавать копию заданного массива с помощью поэлементного копирования.*/
+
 using static System.Console;
 using System.Linq;
 Clear();
+//WriteLine("Введите число:");
 
-WriteLine("Enter the sides of the triangle");
+int[] array1 = new int[10].Select(x=> new Random().Next(0,100)).ToArray();
+int[] array2 = CopyArray(array1);
+WriteLine($"[{String.Join(",", array1)}]");
+WriteLine($"[{String.Join(",", array2)}]");
 
-int[] array = ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(x=>Convert.ToInt32(x)).ToArray();
-
-WriteLine(Triangle(array)?"Yes":"No");
-
-bool Triangle(int[] arra)
+int[] CopyArray (int[] arr1)
 {
-    return (arra[0]+arra[1] > arra[2] && arra[1]+arra[2] > arra[0] && arra[0]+arra[2] > arra[1]);
-    
+    int[] result = new int[arr1.Length]; 
+    for (int i = 0; i < arr1.Length; i++)
+    {
+        result[i] = arr1[i];
+    }
+    return result;
 }
-
