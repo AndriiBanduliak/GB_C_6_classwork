@@ -1,19 +1,22 @@
-﻿/*Задача 40: Напишите программу, которая принимает на вход три
- числа и проверяет, может ли существовать треугольник с сторонами
- такой длины*/
+﻿/*Задача 44: Не используя рекурсию, выведите первые N 
+чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.*/
+
 using static System.Console;
-using System.Linq;
 Clear();
 
-WriteLine("Enter the sides of the triangle");
+WriteLine("Enter the linght of list Fibbonacci  :");
+int number = Convert.ToInt32(ReadLine());
+int[] result = Fibonacci(number);
+WriteLine($"[{String.Join(",", result)}]");
 
-int[] array = ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(x=>Convert.ToInt32(x)).ToArray();
-
-WriteLine(Triangle(array)?"Yes":"No");
-
-bool Triangle(int[] arra)
+int[] Fibonacci (int n)
 {
-    return (arra[0]+arra[1] > arra[2] && arra[1]+arra[2] > arra[0] && arra[0]+arra[2] > arra[1]);
-    
+    int[] arr = new int[n];
+    arr[0] = 0;
+    arr[1] = 1;
+    for(int i = 2; i < arr.Length; i++)
+    {
+        arr[i] = arr[i-1] + arr[i-2];
+    }
+    return arr;
 }
-
