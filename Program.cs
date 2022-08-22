@@ -1,8 +1,22 @@
-﻿using static System.Console;
-using System.Linq;
+﻿/*Задача 44: Не используя рекурсию, выведите первые N 
+чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.*/
+
+using static System.Console;
 Clear();
-WriteLine("Введите массив через пробел:");
 
-int count = ReadLine().Split(" ",StringSplitOptions.RemoveEmptyEntries).Select(x=>int.Parse(x)).ToArray().Where(a=>a%2!=0).Count();
+WriteLine("Enter the linght of list Fibbonacci  :");
+int number = Convert.ToInt32(ReadLine());
+int[] result = Fibonacci(number);
+WriteLine($"[{String.Join(",", result)}]");
 
-WriteLine(count);
+int[] Fibonacci (int n)
+{
+    int[] arr = new int[n];
+    arr[0] = 0;
+    arr[1] = 1;
+    for(int i = 2; i < arr.Length; i++)
+    {
+        arr[i] = arr[i-1] + arr[i-2];
+    }
+    return arr;
+}
