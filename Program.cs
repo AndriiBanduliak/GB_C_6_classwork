@@ -1,35 +1,22 @@
-﻿using static System.Console;
+﻿/*Задача 45: Напишите программу, которая будет
+создавать копию заданного массива с помощью поэлементного копирования.*/
+
+using static System.Console;
 using System.Linq;
 Clear();
-WriteLine("Enter the number :");
+//WriteLine("Введите число:");
 
-int num = int.Parse(ReadLine()!);
-WriteLine(Convert.ToString(num,8));
-WriteLine(GetNum1(num));
-WriteLine(DecToNum(num,8));
+int[] array1 = new int[10].Select(x=> new Random().Next(0,100)).ToArray();
+int[] array2 = CopyArray(array1);
+WriteLine($"[{String.Join(",", array1)}]");
+WriteLine($"[{String.Join(",", array2)}]");
 
-
-string GetNum1(int number)
+int[] CopyArray (int[] arr1)
 {
-    string result="";
-
-    while(number>0)
+    int[] result = new int[arr1.Length]; 
+    for (int i = 0; i < arr1.Length; i++)
     {
-        result=number%8+result;
-        number/=8;
+        result[i] = arr1[i];
     }
     return result;
-}
-
-string DecToNum(int decNumber, int otherSystem)
-{
-    string res="";
-    string nums="0123456789ABCDEF";
-    while(decNumber>0)
-    {
-        int ost=decNumber/otherSystem;
-        res=nums[decNumber-otherSystem*ost]+res;
-        decNumber/=otherSystem;
-    }
-    return res;
 }
