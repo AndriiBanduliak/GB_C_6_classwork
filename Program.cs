@@ -1,22 +1,22 @@
-﻿/*Задача 45: Напишите программу, которая будет
-создавать копию заданного массива с помощью поэлементного копирования.*/
+﻿/*Задача 44: Не используя рекурсию, выведите первые N 
+чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.*/
 
 using static System.Console;
-using System.Linq;
 Clear();
-//WriteLine("Введите число:");
 
-int[] array1 = new int[10].Select(x=> new Random().Next(0,100)).ToArray();
-int[] array2 = CopyArray(array1);
-WriteLine($"[{String.Join(",", array1)}]");
-WriteLine($"[{String.Join(",", array2)}]");
+WriteLine("Enter the linght of list Fibbonacci  :");
+int number = Convert.ToInt32(ReadLine());
+int[] result = Fibonacci(number);
+WriteLine($"[{String.Join(",", result)}]");
 
-int[] CopyArray (int[] arr1)
+int[] Fibonacci (int n)
 {
-    int[] result = new int[arr1.Length]; 
-    for (int i = 0; i < arr1.Length; i++)
+    int[] arr = new int[n];
+    arr[0] = 0;
+    arr[1] = 1;
+    for(int i = 2; i < arr.Length; i++)
     {
-        result[i] = arr1[i];
+        arr[i] = arr[i-1] + arr[i-2];
     }
-    return result;
+    return arr;
 }
